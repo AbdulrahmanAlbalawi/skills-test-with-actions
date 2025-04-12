@@ -15,8 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run markdown lint
+      - name: Setup Node and run markdown lint
         run: |
-          npm install -g markdownlint-cli
-          npm install -g remark-preset-lint-consistent
-          npx remark . --use remark-preset-lint-consistent --frail || echo " remark found issues, but continuing"
+          npm init -y
+          npm install remark-cli remark-preset-lint-consistent
+          npx remark . --use remark-preset-lint-consistent --frail || echo "Lint failed, continuing..."
+
