@@ -5,19 +5,18 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run markdown linter
+      - name: Run markdown lint
         run: |
           npm install -g markdownlint-cli
           npm install -g remark-preset-lint-consistent
-          npm search remark-preset-lint-consistent --freal
-
-      
+          npx remark . --use remark-preset-lint-consistent --frail
